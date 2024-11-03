@@ -37,6 +37,7 @@
             height: 150px;
             border-radius: 50%;
             margin-right: 20px;
+            animation: spin 8s linear infinite;
         }
         .social-links {
             display: flex;
@@ -111,6 +112,15 @@
         .affiliate-link:hover {
             text-decoration: underline;
         }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 <body>
@@ -118,7 +128,7 @@
         <div class="profile-header">
             <img src="src/resources/d3r-profile.jpg" alt="Foto de perfil" class="profile-pic">
             <div>
-                <h1>dere.prime</h1>
+                <h1 id="header"></h1>
                 <div class="social-links">
                     <a href="https://github.com/dere-prime" class="social-link" target="_blank">
                         <img src="src/resources/github.png" alt="github">
@@ -200,5 +210,22 @@
             © 2024 dere.prime. Todos los derechos reservados.
         </p>
     </div>
+
+    <script>
+        const text = "dere.prime";
+        const TextElement = document.getElementById('header');
+        
+        let index = 0;
+
+        function WriteHeaderText() {
+            if (index < text.length) {
+                TextElement.textContent = text.slice(0, index + 1);
+                index++;
+                setTimeout(WriteHeaderText, 180);
+            }
+        }
+
+        WriteHeaderText();
+    </script>
 </body>
 </html>

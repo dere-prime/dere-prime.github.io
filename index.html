@@ -1,1 +1,78 @@
-Hello World!
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+
+export default function BiografiaProgramadorSAMP() {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto">
+        <Card className="bg-white shadow-xl rounded-lg overflow-hidden">
+          <div className="md:flex">
+            <div className="md:flex-shrink-0">
+              <img className="h-48 w-full object-cover md:w-48" src="/placeholder.svg?height=192&width=192" alt="Foto de perfil" />
+            </div>
+            <div className="p-8">
+              <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Programador Pawn SAMP</div>
+              <h1 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                Dere Prime
+              </h1>
+              <p className="mt-2 text-gray-500">
+                Desarrollador apasionado por crear experiencias únicas en San Andreas Multiplayer
+              </p>
+            </div>
+          </div>
+          
+          <CardContent className="px-8 py-6">
+            <div className="prose max-w-none">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Sobre mí</h2>
+              <p className="text-gray-700">
+                Con más de 5 años de experiencia en el desarrollo de scripts para SAMP utilizando Pawn, 
+                me especializo en crear modos de juego innovadores y sistemas robustos que mejoran la 
+                experiencia de los jugadores. Mi pasión por el modding y la programación me ha llevado 
+                a contribuir en varios proyectos de código abierto y a mantener una comunidad activa de 
+                desarrolladores SAMP.
+              </p>
+              
+              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Habilidades</h3>
+              <div className="flex flex-wrap gap-2">
+                <Badge>Pawn</Badge>
+                <Badge>SAMP</Badge>
+                <Badge>MySQL</Badge>
+                <Badge>Git</Badge>
+                <Badge>Diseño de sistemas</Badge>
+                <Badge>Optimización de rendimiento</Badge>
+              </div>
+              
+              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Proyectos Destacados</h3>
+              <ul className="list-disc pl-5 text-gray-700">
+                <li>Sistema de economía dinámica para servidor RPG</li>
+                <li>Modo de juego Battle Royale personalizado</li>
+                <li>Framework de misiones modulares</li>
+                <li>Plugin anti-cheat avanzado</li>
+              </ul>
+            </div>
+            
+            <div className="mt-8">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Conéctate conmigo</h3>
+              <div className="flex space-x-4">
+                <Button variant="outline">
+                  <FaGithub className="mr-2 h-4 w-4" />
+                  GitHub
+                </Button>
+                <Button variant="outline">
+                  <FaLinkedin className="mr-2 h-4 w-4" />
+                  LinkedIn
+                </Button>
+                <Button variant="outline">
+                  <FaTwitter className="mr-2 h-4 w-4" />
+                  Twitter
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  )
+}

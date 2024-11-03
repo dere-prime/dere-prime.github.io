@@ -3,106 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biografía de Programador Pawn SAMP</title>
+    <title>Perfil de Programador Pawn SA-MP</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            line-height: 1.5;
             padding: 20px;
-            background-color: #f4f4f4;
-        }
-        header {
-            background-color: #3498db;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            border-radius: 5px 5px 0 0;
         }
         .container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 0 0 5px 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        img {
-            max-width: 200px;
-            border-radius: 50%;
-            display: block;
+            max-width: 800px;
             margin: 0 auto;
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 20px;
         }
         h1, h2 {
-            color: #2c3e50;
+            border-bottom: 1px solid #21262d;
+            padding-bottom: 10px;
+            color: #c9d1d9;
         }
-        .skills {
+        .profile-header {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            align-items: center;
             margin-bottom: 20px;
         }
-        .skill {
-            background-color: #3498db;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.9em;
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-right: 20px;
         }
         .social-links {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 10px;
+            margin-top: 10px;
         }
-        .social-links a {
-            color: #3498db;
+        .social-link {
+            display: flex;
+            align-items: center;
+            color: #58a6ff;
             text-decoration: none;
+        }
+        .social-link img {
+            width: 24px;
+            height: 24px;
+            margin-right: 5px;
+        }
+        .discord-social-link img {
+            width: 24px;
+            height: 17px;
+            margin-right: 5px;
+        }
+        .discord-social-link {
+            display: flex;
+            align-items: center;
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        .projects {
+            list-style-type: none;
+            padding: 0;
+        }
+        .projects li {
+            background-color: #0d1117;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 6px;
+        }
+        .tag {
+            background-color: #238636;
+            color: #ffffff;
+            padding: 2px 6px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-right: 5px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Carlos Rodríguez</h1>
-        <p>Programador Pawn SAMP</p>
-    </header>
-    
     <div class="container">
-        <img src="/placeholder.svg?height=200&width=200" alt="Foto de Carlos Rodríguez">
-        
-        <h2>Sobre mí</h2>
+        <div class="profile-header">
+            <img src="src/resources/d3r-profile.jpg" alt="Foto de perfil" class="profile-pic">
+            <div>
+                <h1>dere.prime</h1>
+                <div class="social-links">
+                    <a href="https://github.com/dere-prime" class="social-link" target="_blank">
+                        <img src="src/resources/github.png" alt="github">
+                        GitHub
+                    </a>
+                    <a href="https://discord.com/users/1207868745184452640" class="discord-social-link" target="_blank">
+                        <img src="src/resources/discord.png" alt="discord">
+                        Discord
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <h2>Sobre mÃ­</h2>
         <p>
-            Con más de 5 años de experiencia en el desarrollo de scripts para SAMP utilizando Pawn, 
-            me especializo en crear modos de juego innovadores y sistemas robustos que mejoran la 
-            experiencia de los jugadores. Mi pasión por el modding y la programación me ha llevado 
-            a contribuir en varios proyectos de código abierto y a mantener una comunidad activa de 
-            desarrolladores SAMP.
+            Soy un desarrollador centrado unicamente en Pawn y MySQL, llevo desde el aÃ±o 2022 programando servidores 
+            para SA-MP sin detenerme, puedo decir que ya tengo un gran conocimiento sobre el tema, y puedo
+            ofrecer mis servicios para personas que necesitan una buena programacion en su servidor.
         </p>
-        
-        <h2>Habilidades</h2>
-        <div class="skills">
-            <span class="skill">Pawn</span>
-            <span class="skill">SAMP</span>
-            <span class="skill">MySQL</span>
-            <span class="skill">Git</span>
-            <span class="skill">Diseño de sistemas</span>
-            <span class="skill">Optimización de rendimiento</span>
-        </div>
-        
+
         <h2>Proyectos Destacados</h2>
-        <ul>
-            <li>Sistema de economía dinámica para servidor RPG</li>
-            <li>Modo de juego Battle Royale personalizado</li>
-            <li>Framework de misiones modulares</li>
-            <li>Plugin anti-cheat avanzado</li>
+        <ul class="projects">
+            <li>
+                <strong>SA-MP Linux Libs</strong>
+                <br>
+                Recompilacion de librerias para ejecutar servidores en linux, sin problema alguno.
+                <br>
+                <span class="tag">Pawn</span>
+                <span class="tag">SA-MP</span>
+                <span class="tag">Linux</span>
+                <span class="tag">Host</span>
+                <span class="tag">Pterodactyl</span>
+            </li>
+            <li>
+                <strong>Vscode tasks for pawn</strong>
+                <br>
+                .vscode para facilitar un poco la compilacion a traves de Visual Studio Code, tambien arregla algunos bugs con el encoding.
+                <br>
+                <span class="tag">Pawn</span>
+                <span class="tag">Visual Studio Code</span>
+            </li>
         </ul>
-        
-        <h2>Conéctate conmigo</h2>
-        <div class="social-links">
-            <a href="https://github.com/" target="_blank">GitHub</a>
-            <a href="https://linkedin.com/" target="_blank">LinkedIn</a>
-            <a href="https://twitter.com/" target="_blank">Twitter</a>
-        </div>
+
+        <p>
+            Â© 2024 dere.prime. Todos los derechos reservados.
+        </p>
     </div>
 </body>
 </html>

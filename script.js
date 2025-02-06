@@ -27,7 +27,7 @@ function displayRepositories(repos) {
     });
 }
 
-const text = "dere.prime";
+const text = "Lemi";
 const linkElement = document.querySelector('#header .profile-name'); // Selecciona el <a>
 
 let index = 0;

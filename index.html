@@ -1,53 +1,190 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Soy desarrollador especializado en Pawn y MySQL, con experiencia en servidores SA-MP desde 2022.">
-    <link rel="icon" href="src/profile.jpg" type="image/x-icon">
-    <title>Lemi</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Soy un ex desarrollador especializado en Pawn y MySQL, con experiencia en servidores SA-MP desde 2022.">
+    <link rel="icon" href="src/d3r-profile.jpg" type="image/x-icon">
+    <title>marcosjlopezz</title>
+    <style>
+        :root {
+            --github-bg: #0d1117;
+            --github-border: #30363d;
+            --github-text: #c9d1d9;
+            --github-link: #58a6ff;
+            --windows-title: #1f1f1f;
+            --windows-close: #e81123;
+            --card-bg: #161b22;
+            --secondary-text: #8b949e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--github-bg);
+            color: var(--github-text);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .window {
+            width: 100%;
+            max-width: 600px;
+            background: var(--card-bg);
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            border: 1px solid var(--github-border);
+        }
+        
+        .window-title {
+            background: var(--windows-title);
+            color: white;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .window-title-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .window-controls {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .control {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .minimize {
+            background: #ffbd44;
+        }
+        
+        .maximize {
+            background: #00ca56;
+        }
+        
+        .close {
+            background: var(--windows-close);
+        }
+        
+        .window-content {
+            padding: 24px;
+        }
+        
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--github-border);
+            background-color: #21262d;
+        }
+        
+        .profile-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: #e6edf3;
+        }
+        
+        .profile-username {
+            font-size: 16px;
+            color: var(--secondary-text);
+            margin-top: -8px;
+        }
+        
+        .message-box {
+            background: #21262d;
+            border: 1px solid var(--github-border);
+            border-radius: 6px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+        
+        .message-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #e6edf3;
+        }
+        
+        .message-content {
+            line-height: 1.5;
+        }
+        
+        .footer {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--secondary-text);
+        }
+        
+        @media (max-width: 640px) {
+            .window {
+                max-width: 100%;
+            }
+            
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <img src="src/profile.png" alt="Foto de perfil" class="profile-pic">
-            <h1 id="header">
-                <a href="https://discord.com/users/1303170133702868992" target="_blank" class="profile-name"></a>
-            </h1>            
-            <p>Programador de Pawn en San Andreas Multiplayer</p>
-        </div>
-    </header>
-
-    <main class="container">
-        <section id="sobre-mi">
-            <h2>Sobre Mí</h2>
-            <p>Soy un desarrollador de origen dominicano especializado en los lenguajes de programación Pawn y MySQL. Desde 2022, me dedico a crear servidores para SA-MP, y he adquirido un amplio conocimiento en este campo. Actualmente, ofrezco mis servicios a quienes buscan una programación de calidad para su servidor de SA-MP.</p>
-        </section>
-
-        <section id="proyectos">
-            <h2>Proyectos relacionados</h2>
-            <div id="repo-list">
-                <!-- Los repositorios se cargarán aquí -->
+    <div class="window">
+        <div class="window-title">
+            <div class="window-title-text">Profile - GitHub</div>
+            <div class="window-controls">
+                <div class="control minimize"></div>
+                <div class="control maximize"></div>
+                <div class="control close"></div>
             </div>
-        </section>
-
-        <section id="lenguajes">
-            <h2>Lenguajes de Programación</h2>
-            <div class="lenguaje">
-                <img src="src/pawn.png" alt="Pawn">
-                <p>Pawn</p>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Lemi. Todos los derechos reservados.</p>
         </div>
-    </footer>
-
-    <script src="script.js"></script>
+        <div class="window-content">
+            <div class="profile">
+                <img src="src/d3r-profile.jpg?height=150&width=150" alt="Profile Picture" class="profile-image">
+                <h1 class="profile-name">Marcos Lopez</h1>
+                <p class="profile-username">@marcosjlopezz</p>
+            </div>
+            
+            <div class="message-box">
+                <h2 class="message-title">Anuncio de Retiro</h2>
+                <div class="message-content">
+                    <p>Hoy, 28 de febrero, he decidido retirarme como programador de Pawn.</p>
+                    <p>Ha sido un honor compartir este camino con ustedes. ¡Gracias por todo!</p>
+                    <br>
+                    <p>— Marcos</p>                    
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p style="margin-top: 16px;">Última actualización: 28 de febrero, 2025</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
-

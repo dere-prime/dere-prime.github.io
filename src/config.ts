@@ -6,7 +6,7 @@ export const owner = {
   name: "Marcos Lopez",
   brand: "Dere Prime",
   // Solo direcciones confirmadas como contacto público. Vacío oculta los enlaces.
-  email: "dere.prime@gmail.com",
+  email: "dere.prime.code@gmail.com",
   github: "https://github.com/dere-prime",
   discordId: "1392025706510286869",
   // Dato pendiente: describir la práctica real de conservación en ambos idiomas.

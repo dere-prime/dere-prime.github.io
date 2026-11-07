@@ -281,7 +281,7 @@ try {
         `Projects load lazily: ${route}`,
       );
       check(
-        doc.querySelector('#contact a[href="mailto:dere.prime@gmail.com"]'),
+        doc.querySelector('#contact a[href="mailto:dere.prime.code@gmail.com"]'),
         `Official work email: ${route}`,
       );
       check(

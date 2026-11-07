@@ -25,6 +25,6 @@ Trabajas directamente conmigo. Escucho lo que necesitas, definimos el alcance y 
 
 ## Contacto
 
-- **Correo de trabajo:** [dere.prime@gmail.com](mailto:dere.prime@gmail.com)
+- **Correo de trabajo:** [dere.prime.code@gmail.com](mailto:dere.prime.code@gmail.com)
 - **Discord:** [Mi perfil](https://discord.com/users/1392025706510286869)
 - **GitHub:** [dere-prime](https://github.com/dere-prime)

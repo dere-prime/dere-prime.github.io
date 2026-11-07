@@ -1,0 +1,65 @@
+---
+import '@fontsource-variable/manrope';
+import 'lenis/dist/lenis.css';
+import '../styles/global.css';
+import { copy } from '../content';
+import { home, legalPath, path, canContact, owner, discordProfile, type Lang } from '../config';
+interface Props { lang: Lang; title?: string; description?: string; equivalent?: string; noindex?: boolean; }
+const { lang, title, description, equivalent, noindex = false } = Astro.props;
+const t = copy[lang];
+const other = lang === 'es' ? 'en' : 'es';
+const canonical = new URL(lang === 'es' && Astro.url.pathname.endsWith('/404/') ? path('404.html') : Astro.url.pathname, Astro.site);
+const alternate = new URL(equivalent || home(other), Astro.site);
+const isHome = Astro.url.pathname === home(lang);
+const sectionIds = ['projects', 'services', 'about'];
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#17191a" />
+    <meta name="description" content={description || t.description} />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    {noindex && <meta name="robots" content="noindex" />}
+    <title>{title ? `${title} — Dere Prime` : t.title}</title>
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang={lang} href={canonical} />
+    <link rel="alternate" hreflang={other} href={alternate} />
+    <link rel="alternate" hreflang="x-default" href={lang === 'es' ? canonical : alternate} />
+    <link rel="icon" type="image/svg+xml" href={path('favicon.svg')} />
+    <meta property="og:title" content={title ? `${title} — Dere Prime` : t.title} />
+    <meta property="og:description" content={description || t.description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === 'es' ? 'es_DO' : 'en_US'} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t.skip}</a>
+    <header class="header">
+      <div class="header-inner shell">
+        <a class="wordmark" href={home(lang)} aria-label={`Dere Prime — ${lang === 'es' ? 'Inicio' : 'Home'}`}>dere<span class="wordmark-prime">prime<span class="brand-dot" aria-hidden="true">↗</span></span></a>
+        <button class="menu-toggle" aria-label={t.menu} aria-expanded="false" aria-controls="main-nav" data-open={t.menu} data-close={t.close} hidden><span class="menu-label">{t.menu}</span><span class="menu-icon" aria-hidden="true"></span></button>
+        <nav id="main-nav" class="main-nav" aria-label={t.navigation}>
+          {t.nav.map((name, i) => <a data-section={sectionIds[i]} href={`${home(lang)}#${sectionIds[i]}`}><span class="nav-number" aria-hidden="true">0{i + 1}</span>{name}</a>)}
+          {canContact && <a data-section="contact" href={`${home(lang)}#contact`}><span class="nav-number" aria-hidden="true">04</span>{t.contact}</a>}
+        </nav>
+        <div class="language" role="group" aria-label={t.language} data-current={lang}>
+          <a href={lang === 'es' ? canonical.pathname : alternate.pathname} lang="es" aria-current={lang === 'es' ? 'page' : undefined} aria-label="Español" data-language={lang !== 'es' ? '' : undefined}>ES</a>
+          <a href={lang === 'en' ? canonical.pathname : alternate.pathname} lang="en" aria-current={lang === 'en' ? 'page' : undefined} aria-label="English" data-language={lang !== 'en' ? '' : undefined}>EN</a>
+        </div>
+      </div>
+      <div class="reading-progress" aria-hidden="true"></div>
+    </header>
+    <main id="main" tabindex="-1"><slot /></main>
+    <footer class="footer shell">
+      <div class="footer-top" data-reveal>
+        <div class="footer-brand"><a class="wordmark" href={home(lang)}>dere<span class="wordmark-prime">prime</span></a><p>{t.footerLine}</p></div>
+        <nav class="footer-socials" aria-label={t.contactChannels}>{canContact && <a href={`mailto:${owner.email}`} aria-label={`${t.emailLabel}: ${owner.email}`}>{t.footerEmail} <span aria-hidden="true">↗</span></a>}<a href={discordProfile} rel="external">Discord <span aria-hidden="true">↗</span></a><a href={owner.github} rel="external">GitHub <span aria-hidden="true">↗</span></a></nav>
+        <a class="back-top" href={isHome ? '#top' : home(lang)} aria-label={t.back} title={t.back}><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6" /></svg></a>
+      </div>
+      <div class="footer-bottom" data-reveal style="--reveal-delay: 80ms"><p>© {new Date().getUTCFullYear()} {t.rights}</p><nav aria-label={lang === 'es' ? 'Información legal' : 'Legal information'}>{(['legal', 'privacy', 'cookies'] as const).map(kind => <a href={legalPath(lang, kind)}>{t[kind]}</a>)}</nav></div>
+    </footer>
+    <script src="../scripts/site.ts"></script>
+  </body>
+</html>

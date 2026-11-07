@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { copy } from '../content';
+import { home, path, type Lang } from '../config';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = copy[lang];
+---
+<Layout lang={lang} title={t.errorMeta} equivalent={path(lang === 'es' ? 'en/404/' : '404.html')} noindex>
+  <section class="error-page shell"><p class="eyebrow">404 / DERE PRIME</p><h1>{t.errorTitle}</h1><p>{t.errorText}</p><a class="button" href={home(lang)}>{t.back}<span aria-hidden="true">↗</span></a><a class="button" href={home(lang === 'es' ? 'en' : 'es')}>{lang === 'es' ? 'English homepage' : 'Inicio en español'}<span aria-hidden="true">↗</span></a></section>
+</Layout>

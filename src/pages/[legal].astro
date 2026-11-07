@@ -1,0 +1,9 @@
+---
+import Legal from '../components/Legal.astro';
+import { legalSlugs, type LegalKind } from '../config';
+export function getStaticPaths() {
+  return (Object.keys(legalSlugs) as LegalKind[]).map(kind => ({ params: { legal: legalSlugs[kind].es }, props: { kind } }));
+}
+const { kind } = Astro.props;
+---
+<Legal lang="es" kind={kind} />

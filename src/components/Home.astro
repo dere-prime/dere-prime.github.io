@@ -1,0 +1,66 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import emblem from '../../assets/profile.png';
+import { copy } from '../content';
+import { projects, owner, canContact, discordProfile, type Lang } from '../config';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = copy[lang];
+---
+<Layout lang={lang}>
+  <section id="top" class="hero shell" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow entrance"><span class="status-mark" aria-hidden="true"></span>{t.eyebrow}</p>
+      <h1 id="hero-title"><span class="line-mask"><span>{t.line1}</span></span><span class="line-mask"><span class="silver-text">{t.line2}</span></span></h1>
+      <div class="hero-intro entrance"><p class="intro-name">{t.intro}</p><p>{t.lead}</p></div>
+      <a class="button hero-button" href="#projects">{t.cta}<span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="hero-art">
+      <div class="art-label"><span>DERE PRIME</span><span>RD / DOM</span></div>
+      <div class="emblem-wrap">
+        <Image src={emblem} alt={lang === 'es' ? 'Emblema de Dere Prime: D angular plateada junto a una pieza de ajedrez' : 'Dere Prime emblem: a silver angular D beside a chess piece'} width={660} height={660} widths={[360, 540, 660]} sizes="(max-width: 700px) 90vw, 45vw" format="webp" quality={85} loading="eager" fetchpriority="high" />
+        <svg class="art-frame" viewBox="0 0 500 500" fill="none" aria-hidden="true"><path d="M28 28H363L472 137V363L363 472H28Z" pathLength="1" /></svg>
+      </div>
+      <div class="art-caption"><span>{t.heroNote}</span><span aria-hidden="true">↗</span></div>
+    </div>
+    <div class="hero-bottom"><p>PAWN <span>/</span> TYPESCRIPT <span>/</span> REACT <span>/</span> CSS</p><a href="#projects">{t.scroll}<span aria-hidden="true">↓</span></a></div>
+  </section>
+
+  <section id="projects" class="work section shell" aria-labelledby="work-title">
+    <div class="section-heading" data-reveal="heading"><p class="eyebrow">{t.workLabel}</p><div><h2 id="work-title" class="multiline">{t.workTitle}</h2><p class="section-intro">{t.workIntro}</p></div></div>
+    <div class="project-list">{projects.map((project, i) => <article class={`project project-${project.tone}`} data-reveal style={`--reveal-delay: ${i * 90}ms`}>
+      <a class="project-link" href={project.url} aria-label={`${project.name} — ${project.temporary ? t.temporary : t.projectVisit}`} rel="external">
+        <div class="project-visual"><span class="visual-corner" aria-hidden="true">D/P — 0{i + 1}</span><Image src={project.image} alt={project.name} width={660} widths={[330, 500, 660]} sizes="(max-width: 760px) 90vw, (max-width: 1100px) 44vw, 29vw" format="webp" quality={88} loading="lazy" /><span class="visual-cross" aria-hidden="true">+</span></div>
+        <div class="project-info"><div class="project-meta"><span>0{i + 1} /</span><span>{project.field[lang]}</span></div><h3>{project.name}</h3>{project.temporary && <span class="preview-badge">{t.temporary}</span>}<span class="project-action"><span class="project-action-copy"><span class="project-action-label">{project.temporary ? t.previewAction : t.projectVisit}</span><span class="project-domain">{new URL(project.url).hostname.replace(/^www\./, '')}</span></span><span class="project-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 18 18 6M6 6h12v12" /></svg></span></span></div>
+      </a>
+    </article>)}</div>
+  </section>
+
+  <section id="services" class="services section" aria-labelledby="services-title"><div class="shell">
+    <div class="section-heading" data-reveal="heading"><p class="eyebrow">{t.servicesLabel}</p><h2 id="services-title" class="multiline">{t.servicesTitle}</h2></div>
+    <div class="service-list">
+      <article class="service" data-reveal="service"><div class="service-icon" aria-hidden="true">&lt;/&gt;</div><span class="service-index" aria-hidden="true">01</span><h3>{t.webTitle}</h3><p>{t.webText}</p><p class="service-detail">{t.webDetail}</p></article>
+      <article class="service" data-reveal="service" style="--reveal-delay: 120ms"><div class="service-icon game-icon" aria-hidden="true">[+]</div><span class="service-index" aria-hidden="true">02</span><h3>{t.gameTitle}</h3><p>{t.gameText}</p><p class="service-detail">{t.gameDetail}</p></article>
+    </div>
+    <div class="process"><h3 data-reveal>{t.process}</h3><div class="process-grid">{t.practices.map(([n, title, text], i) => <div data-reveal="step" style={`--reveal-delay: ${i * 100}ms`}><span class="process-number">{n}</span><h4>{title}</h4><p>{text}</p></div>)}</div></div>
+  </div></section>
+
+  <section id="about" class="about section shell" aria-labelledby="about-title">
+    <div class="section-heading" data-reveal="heading"><p class="eyebrow">{t.aboutLabel}</p><h2 id="about-title" class="multiline">{t.aboutTitle}</h2></div>
+    <div class="about-grid">
+      <div class="about-stamp" data-reveal="stamp"><span class="stamp-monogram" aria-hidden="true">M<span>/</span>L</span><div class="stamp-details"><span class="stamp-name">Marcos Lopez</span><p>{t.location}</p><p class="stamp-direct">{t.direct}</p></div></div>
+      <div class="about-copy"><p class="about-lead" data-reveal>{t.aboutText}</p><p data-reveal>{t.aboutMore}</p></div>
+      <div class="expertise" data-reveal="skills"><h3>{t.specialty}</h3><ul>{['Pawn', 'TypeScript', 'React', 'CSS'].map(skill => <li>{skill}</li>)}</ul><p><span>{t.learning}</span><br />{t.less}</p></div>
+    </div>
+  </section>
+  {canContact && <section id="contact" class="contact shell" aria-labelledby="contact-title">
+    <div data-reveal="heading"><p class="eyebrow">04 / {t.contact}</p><h2 id="contact-title">{t.contactTitle}</h2><p class="contact-intro">{t.contactText}</p></div>
+    <nav class="contact-grid" aria-label={t.contactChannels}>
+      <a class="contact-card contact-email" href={`mailto:${owner.email}`} data-reveal><span class="contact-label">{t.emailLabel}</span><span class="contact-value">{owner.email}</span><span class="contact-action">{t.emailAction}<span aria-hidden="true">↗</span></span></a>
+      <a class="contact-card" href={discordProfile} rel="external" data-reveal style="--reveal-delay: 90ms"><span class="contact-label">Discord</span><span class="contact-value">{t.discordAction}</span><span class="contact-action">ID / {owner.discordId}<span aria-hidden="true">↗</span></span></a>
+      <a class="contact-card" href={owner.github} rel="external" data-reveal style="--reveal-delay: 180ms"><span class="contact-label">GitHub</span><span class="contact-value">dere-prime</span><span class="contact-action">{t.githubAction}<span aria-hidden="true">↗</span></span></a>
+    </nav>
+    <p class="contact-hint">{t.discordHint}</p>
+  </section>}
+</Layout>

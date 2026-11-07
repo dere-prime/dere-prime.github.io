@@ -12,6 +12,12 @@ const canonical = new URL(lang === 'es' && Astro.url.pathname.endsWith('/404/') 
 const alternate = new URL(equivalent || home(other), Astro.site);
 const isHome = Astro.url.pathname === home(lang);
 const sectionIds = ['projects', 'services', 'about'];
+const pageTitle = title ? `${title} — Dere Prime` : t.title;
+const pageDescription = description || t.description;
+const socialImage = new URL(path('images/dere-prime-social.jpg'), Astro.site);
+const socialImageAlt = lang === 'es'
+  ? 'Dere Prime — Marcos Lopez. Desarrollo web y sistemas de SA-MP y MTA, junto al emblema plateado de Dere Prime.'
+  : 'Dere Prime — Marcos Lopez. Web development and SA-MP and MTA systems, alongside the silver Dere Prime emblem.';
 ---
 <!doctype html>
 <html lang={lang}>
@@ -19,20 +25,34 @@ const sectionIds = ['projects', 'services', 'about'];
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#17191a" />
-    <meta name="description" content={description || t.description} />
+    <meta name="description" content={pageDescription} />
+    <meta name="author" content={owner.name} />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     {noindex && <meta name="robots" content="noindex" />}
-    <title>{title ? `${title} — Dere Prime` : t.title}</title>
+    <title>{pageTitle}</title>
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang={lang} href={canonical} />
     <link rel="alternate" hreflang={other} href={alternate} />
     <link rel="alternate" hreflang="x-default" href={lang === 'es' ? canonical : alternate} />
     <link rel="icon" type="image/svg+xml" href={path('favicon.svg')} />
-    <meta property="og:title" content={title ? `${title} — Dere Prime` : t.title} />
-    <meta property="og:description" content={description || t.description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:site_name" content={owner.brand} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={lang === 'es' ? 'es_DO' : 'en_US'} />
+    <meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_DO'} />
+    <meta property="og:image" content={socialImage} />
+    {socialImage.protocol === 'https:' && <meta property="og:image:secure_url" content={socialImage} />}
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={socialImageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={socialImageAlt} />
   </head>
   <body>
     <a class="skip-link" href="#main">{t.skip}</a>

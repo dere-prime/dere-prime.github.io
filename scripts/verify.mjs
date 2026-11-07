@@ -28,6 +28,8 @@ const types = {
   ".css": "text/css",
   ".js": "application/javascript",
   ".webp": "image/webp",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
   ".svg": "image/svg+xml",
   ".woff2": "font/woff2",
 };
@@ -121,6 +123,49 @@ try {
       Boolean(doc.querySelector('meta[name="description"]')?.content),
       `Description: ${route}`,
     );
+    const metaProperty = (name) =>
+      doc.querySelector(`meta[property="${name}"]`)?.content;
+    const metaName = (name) =>
+      doc.querySelector(`meta[name="${name}"]`)?.content;
+    check(
+      metaProperty("og:title") === doc.title,
+      `Social title matches the page: ${route}`,
+    );
+    check(
+      metaProperty("og:description") === metaName("description"),
+      `Social description matches the page: ${route}`,
+    );
+    check(
+      metaProperty("og:site_name") === "Dere Prime",
+      `Social brand name: ${route}`,
+    );
+    const socialImage = new URL(metaProperty("og:image"));
+    check(
+      socialImage.origin === new URL(site).origin &&
+        socialImage.pathname === `${base}/images/dere-prime-social.jpg`,
+      `Absolute social image respects site origin and base: ${route}`,
+    );
+    check(
+      metaProperty("og:image:type") === "image/jpeg" &&
+        metaProperty("og:image:width") === "1200" &&
+        metaProperty("og:image:height") === "630",
+      `Social image MIME and dimensions: ${route}`,
+    );
+    check(
+      Boolean(metaProperty("og:image:alt")),
+      `Social image alternative text: ${route}`,
+    );
+    check(
+      metaName("twitter:card") === "summary_large_image" &&
+        metaName("twitter:image") === socialImage.href,
+      `Large social card uses the same image: ${route}`,
+    );
+    check(
+      metaName("twitter:title") === doc.title &&
+        metaName("twitter:description") === metaName("description"),
+      `Social card title and description: ${route}`,
+    );
+    await resource(new URL(socialImage.pathname, origin));
     check(
       Boolean(doc.querySelector('a.skip-link[href="#main"]')),
       `Skip link: ${route}`,
